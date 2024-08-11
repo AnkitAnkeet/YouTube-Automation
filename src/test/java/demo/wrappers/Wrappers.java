@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Wrappers {
+   
     
     
     //method to click or select any element from header area
@@ -303,6 +304,17 @@ public static int countNumbers(WebElement elementToCount) {
         
         return Double.parseDouble(numericPart.toString());
      }
+
+
+     //method to search for elements
+     public static void searchFor(ChromeDriver driver, String[] texts){
+        for(String text:texts){
+                iconFromHeader(driver, By.xpath(".//input")).clear();
+                iconFromHeader(driver, By.xpath(".//input")).sendKeys(text);
+                iconFromHeader(driver, By.xpath(".//*[@id='search-icon-legacy']")).click();
+                
+     }
+    }
     
         
     

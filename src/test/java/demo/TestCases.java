@@ -75,7 +75,7 @@ public class TestCases {
         }
 
 
-        @Test(priority = 4)
+         @Test(priority = 5)
         public static void testCase02() throws InterruptedException{
                 System.out.println("Start TestCase: testCase02");
                 //wait for the menu to be clickable incase
@@ -94,7 +94,7 @@ public class TestCases {
         }
 
 
-        @Test (priority = 2)
+         @Test (priority = 2)
         public static void testCase03() throws InterruptedException {
                 System.out.println("Start TestCase: testCase03");
                 //wait for the menu to be clickable incase
@@ -111,7 +111,7 @@ public class TestCases {
                 softAssert.assertAll();
                 System.out.println("End TestCase: testCase03");
         }
-        @Test(priority = 3)
+         @Test(priority = 3)
         public static void testCase04() throws InterruptedException{
                 System.out.println("Start TestCase: testCase04");
                 //wait for the menu to be clickable incase
@@ -129,8 +129,7 @@ public class TestCases {
                 //the sum of the number of likes on 1st, second and third news
                 System.out.println(Wrappers.getLikesCount(driver,1)+Wrappers.getLikesCount(driver,2)+Wrappers.getLikesCount(driver,3));
                 System.out.println("End TestCase: testCase04");
-        }
-       
+        }     
 
 }
 
