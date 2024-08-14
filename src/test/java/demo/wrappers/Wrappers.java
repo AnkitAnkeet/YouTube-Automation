@@ -307,20 +307,68 @@ public static int countNumbers(WebElement elementToCount) {
 
 
      //method to search for elements
-     public static void searchFor(ChromeDriver driver, String[] texts){
-        for(String text:texts){
+     public static void searchFor(ChromeDriver driver, String text) throws InterruptedException{
+       
                 iconFromHeader(driver, By.xpath(".//input")).clear();
                 iconFromHeader(driver, By.xpath(".//input")).sendKeys(text);
                 iconFromHeader(driver, By.xpath(".//*[@id='search-icon-legacy']")).click();
+                Thread.sleep(5000);   // to wait for the visibility of all elements
                 
-     }
+     
     }
-    
-        
+
+     //method to scroll down until it reaches specific counts
+        public static  int scrollAndCount(ChromeDriver driver,int totalCountShouldBe) throws InterruptedException{
+            int totalCounts =0;
+            JavascriptExecutor js =  (JavascriptExecutor)driver;
+            while(totalCounts < totalCountShouldBe){
+                int i=0;
+                while(i<=3){
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            Thread.sleep(5000);
+            i++;
+                }
+           
+            List<WebElement> likes = driver.findElements(By.xpath("//div[@class='style-scope ytd-video-renderer']//span[contains(text(),'views')]"));
+            
+            for(WebElement like : likes) {
+
+            //scroll into the like element
+            js.executeScript("arguments[0].scrollIntoView(true);", like); 
+
+
+            String countInString = like.getText();
+            int countInInt = (int) extractValue(countInString);
+            if (countInString.isEmpty()) {
+                totalCounts += 0; //if empty count should be zero
+            } else {
+                if (countInString.toLowerCase().contains("k")) {
+                    totalCounts +=  countInInt * 1000;
+                    
+                } else if (countInString.toLowerCase().contains("m")) {
+                    totalCounts +=  countInInt * 1000000;
+                    
+                } else if (countInString.toLowerCase().contains("b")){
+                    totalCounts +=  countInInt * 1000000000;
+                   
+                } else {
+                    totalCounts +=  countInInt;
+                }
+            }
+
+            if (totalCounts >= totalCountShouldBe) {
+                break;
+            }
+
+        }
+    }
+          
+            return totalCounts;
+        }
+
     
             
     
-        
     } 
 
     

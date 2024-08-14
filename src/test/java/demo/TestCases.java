@@ -129,7 +129,45 @@ public class TestCases {
                 //the sum of the number of likes on 1st, second and third news
                 System.out.println(Wrappers.getLikesCount(driver,1)+Wrappers.getLikesCount(driver,2)+Wrappers.getLikesCount(driver,3));
                 System.out.println("End TestCase: testCase04");
-        }     
+        }  
+
+
+        @Test(priority=4)
+        public static void testCase05() throws InterruptedException{
+                System.out.println("Start TestCase: testCase05");
+                SoftAssert softAssert = new SoftAssert();
+
+
+                //search for "Movies";
+                Wrappers.searchFor(driver, "Movies");
+                //scroll down until the likes reaches 10c
+                softAssert.assertTrue(Wrappers.scrollAndCount(driver, 100000000)>=100000000,"It did not scroll for the condition for \"Movies\"");
+
+                // serach for "Music";
+                Wrappers.searchFor(driver, "Music");
+                //scroll down until the likes reaches 10c
+                softAssert.assertTrue(Wrappers.scrollAndCount(driver, 100000000)>=100000000,"It did not scroll for the condition for \"Music\"");
+
+
+                // search for "Games";
+                Wrappers.searchFor(driver, "Games");
+                //scroll down until the likes reaches 10c
+                softAssert.assertTrue(Wrappers.scrollAndCount(driver, 100000000)>=100000000,"It did not scroll for the condition for \"Games\"");
+
+
+                //search for "India";
+                Wrappers.searchFor(driver, "India");
+                //scroll down until the likes reaches 10c
+                softAssert.assertTrue(Wrappers.scrollAndCount(driver, 100000000)>=100000000,"It did not scroll for the condition for \"India\"");
+
+                //search for "UK";
+                Wrappers.searchFor(driver, "UK");
+                //scroll down until the likes reaches 10c
+                softAssert.assertTrue(Wrappers.scrollAndCount(driver, 100000000)>=100000000,"It did not scroll for the condition for \"UK\"");
+
+                softAssert.assertAll();
+        System.out.println("End TestCase: testCase05");
+        }
 
 }
 
